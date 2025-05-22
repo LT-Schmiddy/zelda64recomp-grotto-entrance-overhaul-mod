@@ -9,12 +9,18 @@ ASSETS_INCLUDE_DIR ?= assets_extracted/assets
 ifeq ($(OS),Windows_NT)
 CC      := clang
 LD      := ld.lld
+OFFLINE_BUILD_PLATFORM_FLAGS := -s
+OFFLINE_BUILD_PLATFORM_EXT := dll
 else ifneq ($(shell uname),Darwin)
 CC      := clang
 LD      := ld.lld
+OFFLINE_BUILD_PLATFORM_FLAGS := -ldl -fPIC
+OFFLINE_BUILD_PLATFORM_EXT := so
 else
 CC      ?= clang
 LD      ?= ld.lld
+OFFLINE_BUILD_PLATFORM_FLAGS := -fPIC
+OFFLINE_BUILD_PLATFORM_EXT := dylib
 endif
 
 # Extlib Building Info:
@@ -66,6 +72,8 @@ CPPFLAGS := -nostdinc -D_LANGUAGE_C -DMIPS -DF3DEX_GBI_2 -DF3DEX_GBI_PL -DGBI_DO
 			-I assets_extracted -I assets_extracted/assets -I assets_extracted/assets/assets
 LDFLAGS  := -nostdlib -T $(LDSCRIPT) -Map $(BUILD_DIR)/mod.map --unresolved-symbols=ignore-all --emit-relocs -e 0 --no-nmagic
 
+OFFLINE_BUILD_FLAGS := -shared -I ./offline_build $(OFFLINE_BUILD_PLATFORM_FLAGS)
+
 C_SRCS := $(wildcard src/*.c)
 C_OBJS := $(addprefix $(BUILD_DIR)/, $(C_SRCS:.c=.o))
 C_DEPS := $(addprefix $(BUILD_DIR)/, $(C_SRCS:.c=.d))
@@ -84,6 +92,7 @@ $(MOD_FILE): $(RECOMP_MOD_TOOL) $(MOD_ELF)
 
 offline: nrm
 	$(OFFLINE_MOD_TOOL) $(MOD_SYMS) $(MOD_BINARY) $(ZELDA_SYMS) $(OFFLINE_C_OUTPUT)
+	$(CC) $(OFFLINE_BUILD_FLAGS) -o $(MOD_FILE:.nrm=.$(OFFLINE_BUILD_PLATFORM_EXT)) $(OFFLINE_C_OUTPUT)
 
 elf: $(MOD_ELF) 
 
@@ -122,4 +131,4 @@ endif
 
 -include $(C_DEPS)
 
-.PHONY: all runtime nrm offline extlib-all extlib-win extlib-macos extlib-linux clean
+.PHONY: all runtime nrm offline clean
