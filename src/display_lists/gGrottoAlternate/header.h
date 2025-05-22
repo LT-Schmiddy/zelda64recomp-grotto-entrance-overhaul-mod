@@ -1,0 +1,11 @@
+extern Lights1 gGrottoAlternate_rim_material_lights;
+extern Lights1 gGrottoAlternate_center_material_lights;
+extern Vtx gGrottoAlternate_Circle_mesh_vtx_0[192];
+extern Gfx gGrottoAlternate_Circle_mesh_tri_0[];
+extern Vtx gGrottoAlternate_Circle_mesh_vtx_1[20];
+extern Gfx gGrottoAlternate_Circle_mesh_tri_1[];
+extern Gfx mat_gGrottoAlternate_rim_material[];
+extern Gfx mat_revert_gGrottoAlternate_rim_material[];
+extern Gfx mat_gGrottoAlternate_center_material[];
+extern Gfx mat_revert_gGrottoAlternate_center_material[];
+extern Gfx gGrottoAlternate_Circle_mesh[];

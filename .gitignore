@@ -10,6 +10,7 @@
 *.pyc
 *.thunderstore.zip
 *.nrm
+*.blend1
 ./funcs.h
 patches.map
 assets_extracted/

@@ -3,9 +3,11 @@
 #include "recomputils.h"
 #include "recompconfig.h"
 
-
 #include "overlays/actors/ovl_Door_Ana/z_door_ana.h"
 #include "assets/objects/gameplay_field_keep/gameplay_field_keep.h"
+
+#include "display_lists/gGrottoAlternate/header.h"
+#include "display_lists/gGrottoAlternate/model.inc.c"
 
 #define FLAGS (ACTOR_FLAG_UPDATE_DURING_OCARINA)
 
@@ -25,6 +27,6 @@ RECOMP_PATCH void DoorAna_Update(Actor* thisx, PlayState* play) {
     // this->actor.shape.rot.y = BINANG_ROT180(Camera_GetCamDirYaw(GET_ACTIVE_CAM(play)));
 }
 
-void DoorAna_Draw(Actor* thisx, PlayState* play) {
-    Gfx_DrawDListXlu(play, gameplay_field_keep_DL_000C40);
+RECOMP_PATCH void DoorAna_Draw(Actor* thisx, PlayState* play) {
+    Gfx_DrawDListXlu(play, gGrottoAlternate_Circle_mesh);
 }
