@@ -1,0 +1,9 @@
+extern u64 gGrottoAlternate_Circle_Z2_BACKTOWNTex_005240_rgba16_rgba16[];
+extern Vtx gGrottoAlternate_Circle_gGrottoAlternate_Circle_mesh_layer_Opaque_vtx_cull[8];
+extern Vtx gGrottoAlternate_Circle_gGrottoAlternate_Circle_mesh_layer_Opaque_vtx_0[99];
+extern Gfx gGrottoAlternate_Circle_gGrottoAlternate_Circle_mesh_layer_Opaque_tri_0[];
+extern Vtx gGrottoAlternate_Circle_gGrottoAlternate_Circle_mesh_layer_Opaque_vtx_1[17];
+extern Gfx gGrottoAlternate_Circle_gGrottoAlternate_Circle_mesh_layer_Opaque_tri_1[];
+extern Gfx mat_gGrottoAlternate_Circle_rim_material_layerOpaque[];
+extern Gfx mat_gGrottoAlternate_Circle_center_material_layerOpaque[];
+extern Gfx gGrottoAlternate_Circle[];
